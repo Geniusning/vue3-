@@ -39,7 +39,9 @@ service.interceptors.response.use(
   },
   // 请求失败的提醒
   (error) => {
-    console.log('error', error)
+    if (error.response && error.response.data && error.response.data.code === 401) {
+      store.dispatch('user/logout')
+    }
     ElMessage.error(error.message)
     return Promise.reject(new Error(error))
   }

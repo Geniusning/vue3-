@@ -91,7 +91,6 @@ const loading = ref(false)
 const store = useStore()
 const loginFromRef = ref(null)
 const handleLogin = () => {
-  console.log('loginFromRef.value', loginFromRef.value)
   loginFromRef.value.validate((valid) => {
     if (!valid) return
     loading.value = false
@@ -124,13 +123,13 @@ $cursor: #fff;
     padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
-    ::v-deep .el-form-item {
+    :deep .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       color: #454545;
     }
 
-    ::v-deep .el-input {
+    :deep .el-input {
       display: inline-block;
       height: 47px;
       width: 85%;

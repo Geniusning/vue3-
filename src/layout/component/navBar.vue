@@ -1,9 +1,14 @@
 <template>
   <div class="navbar">
+    <Hamburger class="hamburger-container" />
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" :size="40" :src="$store.getters.userInfo.avatar"></el-avatar>
+          <el-avatar
+            shape="square"
+            :size="40"
+            :src="$store.getters.userInfo.avatar"
+          ></el-avatar>
           <el-icon class="el-icon--right"><setting /></el-icon>
         </div>
         <template #dropdown>
@@ -14,7 +19,9 @@
             <a href="#" target="__blank">
               <el-dropdown-item>课程主页</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
+            <el-dropdown-item divided @click="logout"
+              >退出登录</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -25,6 +32,7 @@
 <script setup>
 import { Setting } from '@element-plus/icons'
 import { useStore } from 'vuex'
+import Hamburger from '@/components/hamburger/index'
 
 const store = useStore()
 const logout = () => {
@@ -39,14 +47,23 @@ const logout = () => {
   position: relative;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background 0.5s;
+    &:hover {
+      background: rgb(0, 0, 0, 0.1);
+    }
+  }
   .right-menu {
     display: flex;
     align-items: center;
     float: right;
     padding-right: 16px;
 
-    ::v-deep .avatar-container {
+    :deep .avatar-container {
       cursor: pointer;
       .avatar-wrapper {
         margin-top: 5px;

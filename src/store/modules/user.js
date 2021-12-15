@@ -45,11 +45,9 @@ export default {
     async getUserInfo(context) {
       const res = await getUserInfo()
       this.commit('user/setUserInfo', res)
-      console.log('userInfo', res)
       return res
     },
     logout() {
-      console.log('logout')
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       clearAllStorage()
