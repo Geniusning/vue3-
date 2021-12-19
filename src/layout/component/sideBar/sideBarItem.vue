@@ -17,7 +17,7 @@
 <script setup>
 import MenuItem from './menuItem.vue'
 import { defineProps } from 'vue'
-import { onBeforeRouteUpdate } from 'vue-router'
+// import { onBeforeRouteUpdate } from 'vue-router'
 defineProps({
   route: {
     type: Object,
@@ -25,7 +25,7 @@ defineProps({
   }
 })
 
-onBeforeRouteUpdate((to) => {
-  console.log(to, '=====')
-})
+// onBeforeRouteUpdate((to) => {
+//   console.log(to, '=====')
+// })
 </script>
