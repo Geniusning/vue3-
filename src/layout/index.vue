@@ -5,11 +5,12 @@
   >
     <sideBar
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     ></sideBar>
     <div class="main-container">
       <div class="fixed-header">
         <navBar />
+        <tags-view></tags-view>
       </div>
       <app-Main></app-Main>
     </div>
@@ -20,7 +21,7 @@
 import SideBar from './component/sideBar'
 import NavBar from './component/navBar.vue'
 import AppMain from './component/appMain.vue'
-import variables from '@/styles/variables.scss'
+import TagsView from '@/components/TagsView'
 </script>
 
 <style lang="scss" scoped>
