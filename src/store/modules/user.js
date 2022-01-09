@@ -4,7 +4,7 @@ import md5 from 'md5'
 import { setStorage, getStorage, clearAllStorage } from '@/utils/storage'
 import { setTimeStamp } from '@/utils/auth'
 import { TOKEN } from '@/constant'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 export default {
   namespaced: true,
   state: () => ({
@@ -17,6 +17,7 @@ export default {
       setStorage(TOKEN, token)
     },
     setUserInfo(state, userInfo) {
+      console.log('mutations setUserInfo')
       state.userInfo = userInfo
     }
   },
@@ -48,6 +49,8 @@ export default {
       return res
     },
     logout() {
+      console.log('logout')
+      resetRouter()
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       clearAllStorage()

@@ -9,7 +9,18 @@ router.beforeEach(async (to, from, next) => {
       next('/')
     } else {
       if (!store.getters.hasUserInfo) {
-        await store.dispatch('user/getUserInfo')
+        const { permission } = await store.dispatch('user/getUserInfo')
+        // 处理用户权限
+        const filterRoute = await store.dispatch(
+          'permission/filterRoutes',
+          permission.menus
+        )
+        // 循环添加路由
+        filterRoute.forEach((item) => {
+          router.addRoute(item)
+        })
+        // 添加完路由后要主动跳转
+        return next(to.path)
       }
       next()
     }

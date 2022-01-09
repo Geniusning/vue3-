@@ -19,6 +19,7 @@ service.interceptors.request.use(
       }
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
+    config.headers['Accept-Language'] = store.getters.language
     return config
   },
   (error) => {
@@ -39,7 +40,11 @@ service.interceptors.response.use(
   },
   // 请求失败的提醒
   (error) => {
-    if (error.response && error.response.data && error.response.data.code === 401) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
       store.dispatch('user/logout')
     }
     ElMessage.error(error.message)

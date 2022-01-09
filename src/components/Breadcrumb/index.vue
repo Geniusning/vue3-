@@ -20,14 +20,12 @@ import { useStore } from 'vuex'
 import { generateTitle } from '@/utils/i18n'
 
 const route = useRoute()
-console.log(route.matched)
 // 生成数组数据
 const breadcrumData = ref([])
 const getBreadcrumData = () => {
   breadcrumData.value = route.matched.filter(
     (item) => item.meta && item.meta.title
   )
-  console.log('breadcrumData', breadcrumData.value)
 }
 const router = useRouter()
 const onLinkClick = (item) => {

@@ -6,6 +6,8 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import installSvgIcon from '@/icons'
+import installFilter from '@/filters'
+import installDirective from '@/directive'
 import i18n from '@/i18n'
 // 初始化样式
 import '@/styles/index.scss'
@@ -13,6 +15,8 @@ import './permission'
 
 const app = createApp(App)
 installSvgIcon(app)
+installFilter(app)
+installDirective(app)
 app.use(store)
 app.use(router)
 app.use(i18n)

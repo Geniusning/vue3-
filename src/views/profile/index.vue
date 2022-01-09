@@ -1,19 +1,49 @@
 <template>
-  <div class="">
-    {{ $t('msg.text') }}
+  <div class="my-container">
     <el-row>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
-      <el-button type="success">成功按钮</el-button>
-      <el-button type="info">信息按钮</el-button>
-      <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>
+      <el-col :span="6">
+        <project-card
+          class="project-card"
+          :features="featureData"
+        ></project-card>
+      </el-col>
+      <el-col :span="18">
+        <el-card>
+          <el-tabs v-model="activeName">
+            <el-tab-pane :label="$t('msg.profile.feature')" name="feature">
+              <feature />
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.chapter')" name="chapter">
+              <chapter />
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.author')" name="author">
+              <author />
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script setup>
-import {} from 'vue'
+import ProjectCard from './components/ProjectCard.vue'
+import Feature from './components/Feature.vue'
+import Chapter from './components/Chapter.vue'
+import Author from './components/Author.vue'
+import { featureApi } from '@/api/user'
+import { ref } from 'vue'
+import { watchSwitchLang } from '@/utils/i18n'
+
+const activeName = ref('feature')
+
+const featureData = ref([])
+const getFeatureData = async () => {
+  featureData.value = await featureApi()
+  console.log('featureData', featureData)
+}
+getFeatureData()
+watchSwitchLang(getFeatureData)
 </script>
 
 <style lang="scss" scoped></style>
